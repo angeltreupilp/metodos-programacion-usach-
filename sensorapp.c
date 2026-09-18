@@ -33,6 +33,50 @@ int calcularPromedio(int valores[], int cantidad){
     return promedio;
 }
 
+int es_creciente(int valores[], int n){
+    
+    //inicaremos contando de atras hacia adelamnte
+    //cuando llegue a la ultima posicion salimos de la validacion
+    if(n <= 1){
+        return 1;
+    }
+
+    int valorActual = valores[n-1];
+    int valorSiguiente = valores[n-2];
+    if(valorSiguiente >= valorActual){
+        return 0;
+    }
+    
+    //reutilizamos nuevamente la funcion pero con una posición del arreglo menos
+    return es_creciente(valores, n-1);
+}
+
+int maximo_valor(int valores[], int inicio, int fin)
+{
+    
+    if (inicio == fin)
+    {
+        return valores[inicio];
+    }
+
+    //DIVIDIR
+    int medio = (inicio + fin) / 2;
+
+    //CONQUISTAR
+    int maxIzquierda = maximo_valor(valores, inicio, medio);
+    int maxDerecha = maximo_valor(valores, medio + 1, fin);
+
+    //finalizamos comparando cual de los dos diviciones en el arreglo es mayor 
+    if (maxIzquierda > maxDerecha)
+    {
+        return maxIzquierda;
+    }
+    else
+    {
+        return maxDerecha;
+    }
+}
+
 
 void bienvenida()
 {
@@ -136,10 +180,39 @@ int main()
     
     printf("Valor promedio: %d\n", promedio);
 
+    
+    printf("\n");
+    printf("Bloque III: Verificacion de tendencia creciente\n");
+
+    int esCreciente = es_creciente(lecturas, cantidad);
+    
+    if (esCreciente)
+    {
+        printf("Analizamos el listado entregado y concluimos que ES CRECIENTE!!\n");
+    }
+    else
+    {
+        printf("Analizamos el listado entregado y concluimos que NO ES CRECIENTE!!\n");
+    }
+    
+    
+    printf("\n");
+    printf("Bloque IV: Busqueda binaria\n");
+
+    //Para dividir y conquistar, debemos entregar los limites del arreglo
+    int maximoValorConquistado = maximo_valor(lecturas, 0, cantidad - 1);
+    //la diferencia entre el promedio y el valor maximo
+    int diferencia = maximoValorConquistado - promedio;
+
+    printf("Valor maximo: %d\n", maximoValorConquistado);
+
+    printf("Diferencia entre maximo y promedio: %d\n",
+        diferencia);
+
     despedida();
     
     //Esperamos a cerrar el ejecutable cuando el usuario presione cualquier tecla
-    printf("\nPresiona Enter para salir...");
+    printf("\nMuchas gracias por usar mi app, Presiona Enter para salir...");
     while (getchar() != '\n'); 
     getchar();
 

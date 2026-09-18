@@ -2,8 +2,6 @@
 
 Repositorio de apoyo para ejercicios y laboratorios del ramo **Métodos de Programación** de la Universidad de Santiago de Chile.
 
-El objetivo del repositorio es compartir los ejercicios desarrollados durante el semestre y facilitar que los compañeros puedan descargar, compilar y ejecutar los programas.
-
 ---
 
 # 🧪 Laboratorio 1 - SensorApp
